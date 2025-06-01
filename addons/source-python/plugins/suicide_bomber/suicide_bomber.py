@@ -22,7 +22,7 @@ from players.entity import Player
 from players.helpers import index_from_userid
 
 # Plugin
-from .config import magnitude, sound_file, sprite_scale
+from .config import magnitude, radius, sound_file, sprite_scale
 
 
 sound = Sound(sound_file.get_string(), download=True)
@@ -85,6 +85,7 @@ class SuicideBomber:
         pointer = player.give_named_item("env_explosion")
         entity = make_object(Entity, pointer)
         entity.magnitude = magnitude.get_int()
+        entity.radius_override = radius.get_int()
         entity.sprite_scale = sprite_scale.get_int()
         entity.spawn()
         entity.teleport(origin=player.origin)
