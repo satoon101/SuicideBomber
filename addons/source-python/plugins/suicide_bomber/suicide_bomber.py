@@ -25,7 +25,7 @@ from players.helpers import index_from_userid
 from .config import magnitude, radius, sound_file, sprite_scale
 
 
-sound = Sound(sound_file.get_string(), download=True)
+sound = Sound(str(sound_file), download=True)
 mp_friendlyfire = ConVar("mp_friendlyfire")
 
 
@@ -84,9 +84,9 @@ class SuicideBomber:
         player.active_weapon.remove()
         pointer = player.give_named_item("env_explosion")
         entity = make_object(Entity, pointer)
-        entity.magnitude = magnitude.get_int()
-        entity.radius_override = radius.get_int()
-        entity.sprite_scale = sprite_scale.get_int()
+        entity.magnitude = int(magnitude)
+        entity.radius_override = int(radius)
+        entity.sprite_scale = int(sprite_scale)
         entity.spawn()
         entity.teleport(origin=player.origin)
         self.attacker_index = index
@@ -106,7 +106,7 @@ class SuicideBomber:
         attacker = Player(self.attacker_index)
         if (
             victim.team_index != attacker.team_index
-            or mp_friendlyfire.get_int()
+            or int(mp_friendlyfire)
         ):
             take_damage_info = make_object(TakeDamageInfo, stack_data[1])
             take_damage_info.inflictor = self.attacker_index
