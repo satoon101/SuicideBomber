@@ -1,6 +1,6 @@
 # ../death_beam/strings.py
 
-"""Contains all translation variables for the base plugin."""
+"""Contains all translation variables for the plugin."""
 
 # =============================================================================
 # >> IMPORTS
